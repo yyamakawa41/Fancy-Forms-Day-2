@@ -1,0 +1,67 @@
+div h1{
+	color: blue;
+	font-size: 50px;
+	text-align: center;
+}
+
+.landscape{
+	width: 33%;
+	float:left;
+	
+}
+
+.landscape img{
+	width: 100%;
+	padding: 1%;
+	height: 205px;
+	}
+
+.portrait{
+	width: 33%;
+	float: left;
+	
+}
+
+.portrait img{
+	width: 100%;
+	padding: 1%;
+	
+}
+
+
+.caption{
+	color: blue;
+	font: 20px;
+
+}
+
+.extra-stuff{
+	color: red;
+	font-size: 35px;
+	background-color: blue;
+	width: 33%;
+	float: left;
+}
+
+.wide-image{
+	margin: auto;
+	width: 100%;
+	float:left;
+}
+
+.wide-image img{
+	width:100%;
+}
+
+@media (max-width: 1000px) and (min-width: 601){
+	.portrait{
+		width:47%;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.portrait{
+		width:95%;
+	}
+}
+}
