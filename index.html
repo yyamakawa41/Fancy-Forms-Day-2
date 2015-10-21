@@ -3,49 +3,92 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title</title>
+	<title></title>
 	<link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="styles.css">
 
 </head>
 <body>
 	
 	<div class="form-wrapper">
+		<form name="signUpForm" onsubmit="return (validateForm());">
+			<div id="name-wrapper">	
 
-		<h1>Sign up now!<span>Sign up and tell us what you think of our site!</span></h1>
+				<h1>Sign up now!<span>Sign up and tell us what you think of our site!</span></h1>
+			
+			<div class="section"><span>1</span>First Name & Address</div>
+				<div class="inner-wrap">
+					<div id="just-name" class="form-group">
+						<label class="control-label">Your Full Name<input type="text" class="form-control" name="fullName" placeholder="Full Name">
+						</label>
+					</div>
+				
+					<div id="just-address" class="form-group">
+						<label class="control-label">Address<textarea class="form-control" name="address" placeholder="Address"></textarea>
+						</label>
+					</div>
+				</div>
+			</div>
 		
-		<div class="section"><span>1</span>First Name & Address</div>
-		<div class="inner-wrap">
-		<label>Your Full Name<input type="text" name="fullName">
-		</label>
-		<label>Address <textarea name="address"></textarea>
-		</label>
-		</div>
-	
-		<div class="section"><span>2</span>Email & Phone</div>
-		<div class="inner-wrap">
-		<label>Email Address<input type="email" name="emailAddress">
-		</label>
+			<div class="section"><span>2</span>Email & Phone</div>
+				<div class="inner-wrap">
+					<div id="just-email" class="form-group">
+						<label class="control-label">Email Address<input class="form-control" type="email" name="emailAddress" placeholder="Email">
+						</label>
+					</div>	
+					<div id="just-phone" class="form-group">
+						<label class="control-label">Phone Number<input class="form-control" type="text" name="phoneNumber" placeholder="Phone #">
+						</label>	
+					</div>
+				</div>
+			</div>	
 
-		<label>Phone Number<input type="text" name="phoneNumber">
-		</label>	
-		</div>
+			<div class="section"><span>3</span>Password</div>
+				<div class="inner-wrap">
+					<div id="password" class="form-group">
+						<label class="control-label">Password<input class="form-control" type="password" name="password">
+						</label>
+						<label class="control-label">Confirm Password<input class="form-control" type="password" name="confirmPassword">
+						</label>	
+					</div>
+				</div>
 
-		<div class="section"><span>3</span>Password</div>
-		<div class="inner-wrap">
-		<label>Password<input type="password" name="password">
-		</label>
-		<label>Confirm Password<input type="password" name="confirmPassword">
-		</label>	
-		</div>
 
-		<div class="button-section">
+		<div class="button-section control-label">
 			<input type="submit" value="Sign me up!">
 			<span class="privacy-policy">
 				<input type="checkbox" name="privacy">I agree to the Terms and Policies
 			</span>
 
 		</div>
+		</div>
+
+		</form>
+	</div>
+
+<!-- Latest compiled and minified CSS -->
+
+
+		<script type="text/javascript">
+
+		function validateForm(){
+			if(signUpForm.fullName.value.length < 3){
+				signUpForm.fullName.focus();
+				alert("you must enter your full name.");
+				document.getElementById('just-name').className = 'form-group has-error';
+				return false;
+			}
+		
+			if(signUpForm.address.value.length < 30){
+				signUpForm.address.focus();
+				alert("you must enter a valid address.");
+				document.getElementById('just-address').className = 'form-group has-error';
+				return false;
+			}
+		}
+
+		</script>
 
 	
 </body>

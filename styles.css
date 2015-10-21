@@ -38,6 +38,7 @@
 	border-radius: 6px;
 	border: 2px solid white;
 	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.8);
+	outline: initial;
 }
 
 .form-wrapper .section{
