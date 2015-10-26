@@ -4,15 +4,64 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title></title>
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  	<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 	<link rel="stylesheet" type="text/css" href="http://meyerweb.com/eric/tools/css/reset/reset.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<link rel="stylesheet" href="styles.css">
+
+	<script>
+  		$(function() {
+		    $( "#datepicker" ).datepicker({dateFormat: 'yy/mm/dd'}).val();
+		});
+	
+  		$(function() {
+		var availableTags = [
+      "Javascript",
+      "HTML",
+      "JQuery",
+      "CSS3",
+      "Linux"
+    ];
+    $( "#tags" ).autocomplete({
+      source: availableTags
+    });
+    });
+
+	$(function() {
+    var spinner = $( "#spinner" ).spinner();
+ 
+    $( "#disable" ).click(function() {
+      if ( spinner.spinner( "option", "disabled" ) ) {
+        spinner.spinner( "enable" );
+      } else {
+        spinner.spinner( "disable" );
+      }
+    });
+    $( "#destroy" ).click(function() {
+      if ( spinner.spinner( "instance" ) ) {
+        spinner.spinner( "destroy" );
+      } else {
+        spinner.spinner();
+      }
+    });
+    $( "#getvalue" ).click(function() {
+      alert( spinner.spinner( "value" ) );
+    });
+    $( "#setvalue" ).click(function() {
+      spinner.spinner( "value", 5 );
+    });
+ 
+    $( "button" ).button();
+  });
+  	</script>
 
 </head>
 <body>
 	
 	<div class="form-wrapper">
-		<form name="signUpForm" onsubmit="return (validateForm());">
+		<form name="signUpForm" id="sign-up-form" onsubmit="return (validateForm());">
 			<div id="name-wrapper">	
 
 				<h1>Sign up now!<span>Sign up and tell us what you think of our site!</span></h1>
@@ -41,8 +90,11 @@
 						<label class="control-label">Phone Number<input class="form-control" type="text" name="phoneNumber" placeholder="Phone #">
 						</label>	
 					</div>
+					<div id="skills" class="form-group">
+  						<label class="control-label" for="tags">Skills:<input class="form-control" type="text" id="tags" name="tags"></label>
+					</div>
 				</div>
-			</div>	
+				
 
 			<div class="section"><span>3</span>Password</div>
 				<div class="inner-wrap">
@@ -50,18 +102,27 @@
 						<label class="control-label">Password<input class="form-control" type="password" name="password">
 						</label>
 						<label class="control-label">Confirm Password<input class="form-control" type="password" name="confirmPassword">
-						</label>	
+						</label>
+						<label class="control-label">Birthday<input class="form-control" type="text" id="datepicker">
+						</label>
+
+						<p>
+  						<label for="spinner">Age:</label>
+  						<input id="spinner" name="value" value="30">
+						</p>
+
 					</div>
 				</div>
+			
 
 
-		<div class="button-section control-label">
-			<input type="submit" value="Sign me up!">
-			<span class="privacy-policy">
-				<input type="checkbox" name="privacy">I agree to the Terms and Policies
-			</span>
+			<div class="button-section control-label">
+				<input type="submit" value="Sign me up!">
+				<span class="privacy-policy">
+					<input type="checkbox" name="privacy">I agree to the Terms and Policies
+				</span>
 
-		</div>
+			</div>
 		</div>
 
 		</form>
@@ -73,6 +134,7 @@
 		<script type="text/javascript">
 
 		function validateForm(){
+			$('#name').val().length
 			if(signUpForm.fullName.value.length < 3){
 				signUpForm.fullName.focus();
 				alert("you must enter your full name.");
@@ -80,7 +142,7 @@
 				return false;
 			}
 		
-			if(signUpForm.address.value.length < 30){
+			if(signUpForm.address.value.length == ""){
 				signUpForm.address.focus();
 				alert("you must enter a valid address.");
 				document.getElementById('just-address').className = 'form-group has-error';
